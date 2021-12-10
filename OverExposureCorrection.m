@@ -29,7 +29,8 @@ function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filena
 % % call the correction
 % N = 11;
 % IterationSteps = 2; % 1 or 2
-% [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filenames, N, 65500, IterationSteps);
+% I_saturation = 65500; % 255 for uint8, 2^16-1 for uint16, 1.0 for double. Adjust to actual camera maximum.
+% [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filenames, N, I_saturation, IterationSteps);
 %
 % % show results
 % figure
