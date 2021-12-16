@@ -7,8 +7,9 @@ function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filena
 %   calulation, K_corrected is corrected for overexposure.
 %   R_saturationratio [0..1] is the ratio of saturated pixels in the sliding
 %   NxN window averaged for the sequence. The number of iterations (steps)
-%   can be 1 or 2. One iteration quicker, less noisy, may fail at low
-%   contrast value.
+%   can be 1 or 2. One iteration quicker, less noisy, may fail at very low
+%   contrast value and high saturating pixel ratio (~30%). Two iterations better,
+%   with more numerical noise at high saturation ratio.
 %
 %   The image files should be of full path, single channel of type double,
 %   uint8 or uint16. Saturation is calculated by the given I_saturation (e.g.
