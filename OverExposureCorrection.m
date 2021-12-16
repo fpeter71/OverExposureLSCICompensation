@@ -140,20 +140,20 @@ end
 
 % correction
 if steps > 1
-    K_E = K_C + R_0./(1 + K_C).*K_C.^2;
+    K_D = K_C + R_0./(1 + K_C).*K_C.^2;
 else
-    K_E = K_A + R_0./(1 + K_A).*K_A.^2;
+    K_D = K_A + R_0./(1 + K_A).*K_A.^2;
 end
         
 % merging with the orginal contrast map
-K_E(isnan(K_E)) = K_0(isnan(K_E)); % elimianting possible inf, and nan errors
-K_E(isinf(K_E)) = K_0(isnan(K_E));
+K_D(isnan(K_D)) = K_0(isnan(K_D)); % elimianting possible inf, and nan errors
+K_D(isinf(K_D)) = K_0(isnan(K_D));
 
 % optional step to inpainting diverging values
-K_E = regionfill(K_E, K_E < 0.01);
+K_D = regionfill(K_D, K_D < 0.01);
 
 tobereplaced = double(R_0 > 0);
-K_corrected = tobereplaced.*K_E + (1-tobereplaced).*K_0;
+K_corrected = tobereplaced.*K_D + (1-tobereplaced).*K_0;
 
 % return to kappa, contrast instead of kappa^2
 K_corrected = sqrt(K_corrected);
