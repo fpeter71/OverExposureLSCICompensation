@@ -1,4 +1,4 @@
-function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filenames, N, I_saturation, steps)
+function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filenames, N, I_saturation)
 %OverExposureCorrection Correction of laser speckle contrast calculation of
 %oversatured image sequences
 %   [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filenames, N, I_saturation) sweeps all 
@@ -35,7 +35,7 @@ function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filena
 % figure
 % subplot 131
 % imagesc(1./K_raw.^2,[1 15]);
-% title('Raw 1/kappa^2 map');
+% title('Raw 1/contrast^2 map');
 % colorbar
 % 
 % subplot 132
@@ -45,7 +45,7 @@ function [K_raw, K_corrected, R_saturationratio] = OverExposureCorrection(filena
 % 
 % subplot 133
 % imagesc(1./K_corrected.^2,[1 15]);
-% title('Corrected 1/kappa^2  map');
+% title('Corrected 1/contrast^2  map');
 % colorbar
 % colormap(parula)
 
