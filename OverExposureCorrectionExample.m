@@ -1,25 +1,23 @@
-%{
-%%
 clear
+
 % collection of files with certain extension from a folder
-path = 'C:\Users\folde\OneDrive - SZTAKI\Matlab\stereo\IllumiKez\'; % IllumiSweep_Papir IllumiSweep_3_20ms IllumiSweep_1
+path = 'folder of images\';
 d = dir([path '*.tiff']); % change extension as needed
-for i = 1:1 %length(d)
+for i = 1:length(d)
     name = d(i).name;
     filenames{i} = [path name];
 end
-% call the correction
-%}
-load sampleimages
+% or just a single image as
+% filenames = {'sample.tiff'};
 
-N = 7;
+N = 7; % used neighborhood for NxN spatial contrast
 [K_raw, K_corrected, R_saturationratio] = ...
-    OverExposureCorrection({'sample.tiff'}, N, 255, 1);
-% show results
+    OverExposureCorrection(filenames, N, 255);
 
+% show results
 subplot 131
 imagesc(1./K_raw.^2,[0 3]);
-title('Raw contrast map');
+title('Raw 1/contrast^2 map');
 colorbar
 
 subplot 132
@@ -29,6 +27,5 @@ colorbar
 
 subplot 133
 imagesc(1./K_corrected.^2,[0 3]);
-title('Corrected contrast map');
+title('Corrected 1/contrast^2 map');
 colorbar
-%colormap(jet)
